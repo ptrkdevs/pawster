@@ -1,0 +1,18 @@
+{% from 'macros/form_field.html' import form_field %} {% extends 'base.html' %} {% block content %}
+
+<div class="main register">
+  <h1>Login</h1>
+
+  <form method="POST" class="register-form" novalidate>
+    {{form.hidden_tag()}} {{ form_field(form.email)}} {{ form_field(form.password)}}
+
+    <div class="form-control">
+      {{form.submit(class='submit-btn')}}
+      <p style="margin-top: 1rem">
+        Don't have an Account? <a href="{{url_for('auth.register')}}">Sign up</a>
+      </p>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

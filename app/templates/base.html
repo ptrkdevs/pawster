@@ -1,0 +1,22 @@
+{% from 'macros/nav.html' import navbar %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}" />
+    <script src="https://kit.fontawesome.com/ad24da7ae7.js" crossorigin="anonymous"></script>
+    <title>Pawster - give a dog a forever home</title>
+  </head>
+  <body>
+    {{ navbar(current_user) }} {% with messages = get_flashed_messages(with_categories=true) %} {%
+    if messages %} {% for category, message in messages %}
+    <div class="flash-message {{category}}">{{message}}</div>
+    {% endfor %} {% endif %} {% endwith %} {% block content %} {% endblock%}
+
+    <script src="{{ url_for('static', filename='js/main.js')}}"></script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+{% macro navbar(current_user) %}
+
+<nav>
+  <div class="navbar">
+    <a class="logo" href="{{ url_for('core.dashboard')}}"
+      ><i class="fa-solid fa-paw"></i> <span>PAWS</span>TER</a
+    >
+    <ul class="navbar--links">
+      <li class="navbar--link">
+        <a href="{{ url_for('core.dashboard')}}">HOME</a>
+      </li>
+      <li class="navbar--link">
+        <a href="#">FOR ADOPTIONS</a>
+      </li>
+
+      {% if current_user.is_authenticated %}
+
+      <li class="navbar--link">
+        <a href="{{ url_for('auth.profile', id=current_user.id) }}">PROFILE</a>
+      </li>
+
+      <li class="navbar--link">
+        <a href="#">INBOX</a>
+      </li>
+
+      <li class="navbar--link">
+        <a href="{{ url_for('auth.logout')}}">LOGOUT</a>
+      </li>
+      {% else %} {% if request.path == '/auth/login' %}
+      <li class="navbar--link">
+        <a href="{{ url_for('auth.register')}}">REGISTER</a>
+      </li>
+      {% else %}
+      <li class="navbar--link">
+        <a href="{{ url_for('auth.login')}}">LOGIN</a>
+      </li>
+      {% endif %} {% endif %}
+    </ul>
+  </div>
+</nav>
+
+{% endmacro %}

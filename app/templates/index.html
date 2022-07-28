@@ -1,0 +1,70 @@
+{% extends 'base.html' %} {% block content %}
+
+<main class="index-container">
+  <section class="search">
+    <div class="search-div">
+      <h1 class="search-heading">FIND HAPPINESS IN THE FORM OF A FURRY FRIEND</h1>
+      <form class="search-form" method="POST">
+        <input class="search-form-text" name="breed" type="text" placeholder="Search by breed" />
+        <input class="search-btn" type="submit" value="SEARCH" />
+      </form>
+    </div>
+  </section>
+
+  <section class="profile">
+    <div class="profiles">
+      {% for pet in pets %}
+      <a class="card--profile" href="{{ url_for('core.pet_detail', id=pet.id)}}">
+        <div class="meta-img-name">
+          <div class="meta-img">
+            <img src="{{url_for('static', filename='' + pet.profile_image)}}" alt="profile-image" />
+          </div>
+          <p class="meta-name">{{ pet.name }}</p>
+        </div>
+        <p class="meta-short-intro">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam exercitationem
+          repudiandae deserunt corporis similique aliquam quo esse veritatis quaerat nulla!
+        </p>
+      </a>
+      {% endfor %}
+      <!-- <div class="card--profile">
+        <div class="meta-img-name">
+          <div class="meta-img">
+            <img src="{{url_for('static', filename='images/profile.jpg')}}" alt="profile-image" />
+          </div>
+          <p class="meta-name">Cody Green</p>
+        </div>
+        <p class="meta-short-intro">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam exercitationem
+          repudiandae deserunt corporis similique aliquam quo esse veritatis quaerat nulla!
+        </p>
+      </div>
+
+      <div class="card--profile">
+        <div class="meta-img-name">
+          <div class="meta-img">
+            <img src="{{url_for('static', filename='images/profile.jpg')}}" alt="profile-image" />
+          </div>
+          <p class="meta-name">Cody Green</p>
+        </div>
+        <p class="meta-short-intro">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam exercitationem
+          repudiandae deserunt corporis similique aliquam quo esse veritatis quaerat nulla!
+        </p>
+      </div>
+      <div class="card--profile">
+        <div class="meta-img-name">
+          <div class="meta-img">
+            <img src="{{url_for('static', filename='images/profile.jpg')}}" alt="profile-image" />
+          </div>
+          <p class="meta-name">Cody Green</p>
+        </div>
+        <p class="meta-short-intro">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam exercitationem
+          repudiandae deserunt corporis similique aliquam quo esse veritatis quaerat nulla!
+        </p>
+      </div> -->
+    </div>
+  </section>
+</main>
+{% endblock %}

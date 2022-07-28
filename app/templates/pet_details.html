@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block content %}
+<div class="profile profile-container">
+  <section class="profile-meta">
+    <div class="profile-card">
+      <img src="{{ url_for('static', filename='' + pet.profile_image)}}" alt="profile_image" />
+      <h2 class="profile--name">{{pet.name}}</h2>
+      <p class="profile--age">I am {{pet.age}} years old</p>
+      <p class="profile--breed">{{pet.breed}}</p>
+    </div>
+  </section>
+
+  <section class="profile-details">
+    <div class="profile-details-description">
+      <h2>ABOUT ME</h2>
+
+      <p>{{ pet.description}}</p>
+    </div>
+
+    <div class="profile-details-tricks">
+      <h2>TRICKS I CAN DO</h2>
+
+      {% for trick in pet.tricks %}
+      <div class="trick">
+        <p class="trick--name">{{trick.name }}</p>
+        <p class="trick--detail">{{trick.detail}}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock %}

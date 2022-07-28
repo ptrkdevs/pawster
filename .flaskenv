@@ -1,0 +1,2 @@
+FLASK_APP=pawster.py
+FLASK_ENV=development

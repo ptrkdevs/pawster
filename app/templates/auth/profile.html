@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="user-profile">
+  <img
+    src="{{ url_for('static', filename='images/profile_pictures/' + profile.profile_image )}}"
+    alt="user profile image"
+    class="user-profile_image"
+  />
+
+  <div class="profile-detail-contacts">
+    <h2 class="user-profile-name">{{profile.name}}</h2>
+    <h2>Contact Information</h2>
+    <div>
+      <h4 style="display: inline-block">Email</h4>
+      <p class="user-profle-detail">{{profile.email}}</p>
+    </div>
+    <div>
+      <h4>Address</h4>
+      <p class="user-profle-detail">{{profile.address}}</p>
+    </div>
+    <div>
+      <h4>Contact Number</h4>
+      <p class="user-profle-detail">{{profile.contact_number}}</p>
+    </div>
+    <div class="profle-cta">
+      {% if current_user.id != profile.id %}
+      <a href="cta-message">Send message</a>
+      {% else %}
+      <a class="cta-message" href="#">Send message</a>
+      <a href="{{ url_for('auth.update_profile')}}" class="cta-update">Update Profile</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% from 'macros/form_field.html' import form_field %} {% extends 'base.html' %} {% block content %}
+
+<div class="main-update">
+  <h1 style="margin-bottom: 1rem">Update Profile for {{current_user.name}}</h1>
+
+  <form method="POST" class="update-form" novalidate enctype="multipart/form-data">
+    {{form.hidden_tag()}} {{ form.profile_image}} {{ form_field(form.name)}} {{
+    form_field(form.email)}} {{ form_field(form.address)}} {{ form_field(form.contact_number)}}
+
+    <div class="form-control">{{form.submit(class='submit-btn')}}</div>
+  </form>
+</div>
+
+{% endblock %}

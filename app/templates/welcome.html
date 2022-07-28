@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/welcome.css')}}" />
+    <title>Pawster - give a dog a forever home</title>
+  </head>
+  <body>
+    <main class="main-hero">
+      <div class="hero">
+        <div class="hero-div">
+          <h1 class="hero--heading"><span>PAWS</span>TER</h1>
+
+          <img
+            class="hero--image"
+            src="{{ url_for('static', filename='images/logo.svg')}}"
+            alt="cute dog"
+          />
+        </div>
+        <h2 class="hero-sub">let's give them a forever home</h2>
+        <a href="{{ url_for('core.dashboard')}}" class="cta"> ADOPT A DOG </a>
+      </div>
+    </main>
+  </body>
+</html>
