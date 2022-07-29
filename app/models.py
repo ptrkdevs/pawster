@@ -11,6 +11,8 @@ def load_user(user_id):
 
 class User(db.Model, UserMixin):
 
+    __tablename__ = "user"
+
     id = db.Column(db.Integer, primary_key=True)
     profile_image = db.Column(db.String(64), default="default_profile.jpg")
     name = db.Column(db.String(64), nullable=False)
@@ -18,7 +20,7 @@ class User(db.Model, UserMixin):
     address = db.Column(db.String(200))
     contact_number = db.Column(db.String(11))
     password = db.Column(db.String(250), nullable=False)
-    pet_id = db.Column(db.Integer, db.ForeignKey("pet.id"))
+    pets = db.relationship("Pet", backref="user")
 
     def __init__(self, name, email, password):
         self.name = name
@@ -34,13 +36,16 @@ class User(db.Model, UserMixin):
 
 class Pet(db.Model):
 
+    __tablename__ = "pet"
+
     id = db.Column(db.Integer, primary_key=True)
     profile_image = db.Column(db.String(64), default="images/default_profile.png")
-    # description = db.Column(db.String(500), nullable=True)
+    description = db.Column(db.String(500), nullable=True)
     name = db.Column(db.String(65), nullable=False)
+    for_adoption = db.Column(db.Integer, default=0)
     age = db.Column(db.Integer, nullable=False)
     breed = db.Column(db.String(100), nullable=False)
-    previous_owners = db.relationship("User", backref="pet")
+    owner_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     pictures = db.relationship("Images", backref="pet")
     tricks = db.relationship("Tricks", backref="pet")
 
@@ -54,12 +59,22 @@ class Pet(db.Model):
 
 
 class Images(db.Model):
+
+    __tablename__ = "image"
+
     id = db.Column(db.Integer, primary_key=True)
     pet_id = db.Column(db.Integer, db.ForeignKey("pet.id"), nullable=False)
 
 
 class Tricks(db.Model):
+
+    __tablename__ = "trick"
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
     detail = db.Column(db.String(200))
     pet_id = db.Column(db.Integer, db.ForeignKey("pet.id"), nullable=False)
+
+    def __repr__(self):
+
+        return f"{self.name}"

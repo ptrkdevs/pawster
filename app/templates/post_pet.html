@@ -1,0 +1,13 @@
+{% from 'macros/form_field.html' import form_field %} {% extends 'base.html' %} {% block content %}
+
+<div class="main register">
+  <h1>Create Pet Posting</h1>
+
+  <form method="POST" class="register-form" novalidate>
+    {{form.hidden_tag()}} {{ form_field(form.name)}} {{ form_field(form.breed)}}
+    {{form_field(form.age)}}
+
+    <div class="form-control">{{form.submit(class='submit-btn')}}</div>
+  </form>
+</div>
+{% endblock %}

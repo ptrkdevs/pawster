@@ -26,7 +26,6 @@
       {% if current_user.id != profile.id %}
       <a href="cta-message">Send message</a>
       {% else %}
-      <a class="cta-message" href="#">Send message</a>
       <a href="{{ url_for('auth.update_profile')}}" class="cta-update">Update Profile</a>
       {% endif %}
     </div>

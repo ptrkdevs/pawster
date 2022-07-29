@@ -17,7 +17,10 @@
       <a class="card--profile" href="{{ url_for('core.pet_detail', id=pet.id)}}">
         <div class="meta-img-name">
           <div class="meta-img">
-            <img src="{{url_for('static', filename='' + pet.profile_image)}}" alt="profile-image" />
+            <img
+              src="{{url_for('static', filename='images/pet_pictures' + pet.profile_image)}}"
+              alt="profile-image"
+            />
           </div>
           <p class="meta-name">{{ pet.name }}</p>
         </div>

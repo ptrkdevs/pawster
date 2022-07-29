@@ -21,9 +21,9 @@ def create_app(config_file=None):
     app = Flask(__name__)
 
     app.config["SECRET_KEY"] = "thisismysecretkey"
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(
-        basedir, "pawster.db"
-    )
+    app.config[
+        "SQLALCHEMY_DATABASE_URI"
+    ] = "postgresql://postgres:pgadmin@localhost:5432/pawster"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     # db

@@ -16,6 +16,10 @@
       {% if current_user.is_authenticated %}
 
       <li class="navbar--link">
+        <a href="{{ url_for('core.pet_post')}}">CREATE POSTING</a>
+      </li>
+
+      <li class="navbar--link">
         <a href="{{ url_for('auth.profile', id=current_user.id) }}">PROFILE</a>
       </li>
 
