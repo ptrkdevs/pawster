@@ -34,3 +34,19 @@ class UpdatePetForm(FlaskForm):
     submit = SubmitField(
         "Update",
     )
+
+
+class UpdatePetPictures(FlaskForm):
+
+    images = MultipleFileField("Pet pictures", validators=[FileAllowed(["jpg", "png"])])
+    submit = SubmitField("Add")
+
+
+class UpdateTricksForm(FlaskForm):
+
+    name = StringField("Trick", validators=[DataRequired("Name is required.")])
+    detail = StringField("Detail", validators=[DataRequired("Name is required.")])
+
+    submit = SubmitField(
+        "Add trick",
+    )

@@ -10,7 +10,7 @@
         <a href="{{ url_for('core.dashboard')}}">HOME</a>
       </li>
       <li class="navbar--link">
-        <a href="#">FOR ADOPTIONS</a>
+        <a href="{{ url_for('core.adoptions')}}">FOR ADOPTION</a>
       </li>
 
       {% if current_user.is_authenticated %}

@@ -3,12 +3,13 @@
   <section class="profile-meta">
     <div class="profile-card">
       <img
-        src="{{ url_for('static', filename='images/pet_pictures' + pet.profile_image)}}"
+        src="{{ url_for('static', filename='images/pet_pictures/' + pet.profile_image)}}"
         alt="profile_image"
       />
       <h2 class="profile--name">{{pet.name}}</h2>
       <p class="profile--age">I am {{pet.age}} years old</p>
       <p class="profile--breed">{{pet.breed}}</p>
+      <p class="pet--owner">owner: {{pet.owner.name}}</p>
     </div>
   </section>
 
@@ -32,35 +33,43 @@
       <div class="trick">
         <p class="trick--name">
           {% if current_user.id == pet.owner_id %}
-          <a href="{{ url_for('core.delete_trick',id=trick.id)}}"><i style="color:red;" class="fa-solid fa-circle-minus delete"></i>
+          <a href="{{ url_for('core.delete_trick',id=trick.id, pet_id=pet.id)}}"><i style="color:red;" class="fa-solid fa-circle-minus delete"></i>
           {% endif %}
 
           </i></a></i> {{trick.name }}</p>
         <p class="trick--detail">{{trick.detail}}</p>
       </div>
       {% endfor %}
+      {% if current_user.id == pet.owner_id %}
+        <a href="{{ url_for('core.add_trick',pet_id=pet.id )}}" class="update-btn"
+      >Add Trick</a
+    >
+      {% endif %}
     </div>
     <h2>Photos</h2>
     <section class="profile-details-pictures">
+   
+      {% for picture in pet.pictures %}
       <div class="profile--picture">
-        <img
-          src="{{ url_for('static', filename='images/pet_pictures/1_LADO.jpg' )}}"
+        {% if current_user.id == pet.owner_id %}
+          <a class="picture-delete-btn" href="{{ url_for('core.delete_pic_picture', pet_id=pet.id, image_id=picture.id)}}"><i style="color:red;" class="fa-solid fa-square-xmark delete"></i>
+        {% endif %}
+        <img 
+        
+          src="{{ url_for('static', filename='images/pet_pictures/' + picture.image )}}"
           alt="profile media image"
         />
       </div>
-      <div class="profile--picture">
-        <img
-          src="{{ url_for('static', filename='images/pet_pictures/1_LADO.jpg' )}}"
-          alt="profile media image"
-        />
-      </div>
-      <!-- {% for picture in pet.pictures %}
-      <img
-        src="{{ url_for('static', filename='images/pet_pictures' + picture )}}"
-        alt="profile media image"
-      />
-      {% endfor %} -->
+      
+      {% endfor %} 
+
     </section>
+    {% if current_user.id == pet.owner_id %}
+    <a href="{{ url_for('core.add_pet_picture',pet_id=pet.id) }}" class="update-btn"
+      >Update Pet profile</a>
+    {% endif %}
   </section>
 </div>
 {% endblock %}
+
+

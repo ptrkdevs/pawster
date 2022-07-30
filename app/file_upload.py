@@ -25,7 +25,6 @@ def handle_upload(file_upload, type, *args, **kwargs):
     if type == "pet_picture":
         storage_name = f"{str(kwargs['id'])}_{filename}"
 
-        print(storage_name)
         filepath = os.path.join(current_app.root_path, types[type], storage_name)
 
     output_size = (400, 400)

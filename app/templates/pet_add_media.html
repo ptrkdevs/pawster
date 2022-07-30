@@ -1,0 +1,12 @@
+{% from 'macros/form_field.html' import form_field %} {% extends 'base.html' %} {% block content %}
+
+<div class="main register">
+  <h1>Update</h1>
+
+  <form method="POST" class="register-form" novalidate enctype="multipart/form-data">
+    {{form.hidden_tag()}} {{ form_field(form.images)}}
+
+    <div class="form-control">{{form.submit(class='submit-btn')}}</div>
+  </form>
+</div>
+{% endblock %}
