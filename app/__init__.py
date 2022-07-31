@@ -5,6 +5,10 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 db = SQLAlchemy()
 
 login_manager = LoginManager()
@@ -20,10 +24,8 @@ def create_app(config_file=None):
 
     app = Flask(__name__)
 
-    app.config["SECRET_KEY"] = "thisismysecretkey"
-    app.config[
-        "SQLALCHEMY_DATABASE_URI"
-    ] = "postgresql://postgres:pgadmin@localhost:5432/pawster"
+    app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("MONGODB_URI")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     # db

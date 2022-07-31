@@ -9,7 +9,11 @@
       <h2 class="profile--name">{{pet.name}}</h2>
       <p class="profile--age">I am {{pet.age}} years old</p>
       <p class="profile--breed">{{pet.breed}}</p>
-      <p class="pet--owner">owner: {{pet.owner.name}}</p>
+     {% if current_user.id != pet.owner_id %}
+     <p class="pet--owner"><a href="{{ url_for('core.message_owner',user_id=pet.owner_id,pet_id=pet.id )}}" class="update-btn"
+      >Message owner</a
+    ></p>
+     {% endif %}
     </div>
   </section>
 

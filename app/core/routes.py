@@ -2,7 +2,13 @@ from app.core import bp
 from flask import request, abort, render_template, flash, redirect, url_for
 from app.models import Pet, Tricks, Images, User
 from flask_login import login_required, current_user
-from app.core.forms import PetForm, UpdatePetForm, UpdatePetPictures, UpdateTricksForm
+from app.core.forms import (
+    PetForm,
+    UpdatePetForm,
+    UpdatePetPictures,
+    UpdateTricksForm,
+    MessageForm,
+)
 from app import db
 from app.file_upload import handle_upload
 
@@ -207,3 +213,24 @@ def add_trick(pet_id):
         return redirect(url_for(".pet_detail", id=pet.id))
 
     return render_template("add_tricks.html", form=form)
+
+
+@bp.route("/pet/<string:pet_id>/request/message", methods=["GET", "POST"])
+@login_required
+def message_owner(pet_id):
+
+    form = MessageForm()
+
+    user_id = request.args.get("user_id")
+
+    if form.validate_on_submit():
+
+        message = Message(sender=current_user.id, body=form.body.data, receiver=user_id)
+
+        db.session.add(message)
+        db.session.commit()
+
+        flash("message sent to owner", "success")
+        return redirect(url_for(".pet_detail", id=pet_id))
+
+    return render_template("send_message.html", form=form)

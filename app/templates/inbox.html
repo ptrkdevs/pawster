@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block content %} {% set unread = messages|selectattr('is_read',
+'equalto', 0)| list %}
+<section class="main-message">
+  {% if messages | length < 1 %}
+
+  <h1>You have no messages</h1>
+  {% else %}
+
+  <h1>({{ unread | length }}) Messages</h1>
+  <div class="messages-div">{% for message in messages|sort(is_read=0) %}</div>
+  {% endif %}
+</section>
+
+{% endblock content %}

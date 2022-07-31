@@ -5,7 +5,9 @@
     <a class="logo" href="{{ url_for('core.dashboard')}}"
       ><i class="fa-solid fa-paw"></i> <span>PAWS</span>TER</a
     >
+    <div class="openMenu"><i class="fa fa-bars"></i></div>
     <ul class="navbar--links">
+      <div class="closeMenu"><i class="fa fa-times"></i></div>
       <li class="navbar--link">
         <a href="{{ url_for('core.dashboard')}}">HOME</a>
       </li>
@@ -21,10 +23,6 @@
 
       <li class="navbar--link">
         <a href="{{ url_for('auth.profile', id=current_user.id) }}">PROFILE</a>
-      </li>
-
-      <li class="navbar--link">
-        <a href="#">INBOX</a>
       </li>
 
       <li class="navbar--link">

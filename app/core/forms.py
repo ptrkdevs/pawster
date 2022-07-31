@@ -1,3 +1,4 @@
+from wsgiref.validate import validator
 from flask_wtf import FlaskForm
 from wtforms import (
     StringField,
@@ -50,3 +51,12 @@ class UpdateTricksForm(FlaskForm):
     submit = SubmitField(
         "Add trick",
     )
+
+
+class MessageForm(FlaskForm):
+
+    body = TextAreaField(
+        "Message", validators=[DataRequired("Cannot send an empty message.")]
+    )
+
+    submit = SubmitField("Send")

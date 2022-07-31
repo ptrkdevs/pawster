@@ -71,11 +71,36 @@ nav {
 
 .navbar--links {
     list-style: none;
+    height: 100vh;
+    position: fixed;
+    top:0;
+    right:0;
+    left:0;
+    z-index: 10; 
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-primary);
+    transition: top 1s ease;
     display: none;
 }
 
+.closeMenu  {
+    position: absolute;
+    top:1.5rem;
+    right:4.5rem;
+}
+
+.openMenu, .closeMenu {
+    display: block;
+    cursor: pointer;
+    color: white;
+    font-size: 1.5rem;
+}
+
 .navbar--link {
-    margin-right: 2rem;
+    margin: 4rem 0;
     color: #eee;
 }
 
@@ -85,9 +110,21 @@ nav {
 }
 
 @media screen and (min-width: 960px) {
+
+    .openMenu {
+        display: none;
+    }
+
+    .navbar--link {
+
+        margin: 0 2rem 0 0;
+    }
   
     .navbar--links {
         display: flex;
+        flex-direction: row;
+        position: relative;
+        height: inherit;
     }
 }
 
