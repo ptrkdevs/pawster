@@ -4,10 +4,15 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 import os
+import re
 
 from dotenv import load_dotenv
 
 load_dotenv()
+
+uri = os.environ.get("DATABASE_URL")  # or other relevant config var
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
 
 db = SQLAlchemy()
 
@@ -25,7 +30,7 @@ def create_app(config_file=None):
     app = Flask(__name__)
 
     app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("MONGODB_URI")
+    app.config["SQLALCHEMY_DATABASE_URI"] = uri
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     # db
