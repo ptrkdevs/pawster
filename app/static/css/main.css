@@ -119,6 +119,10 @@ nav {
 
         margin: 0 2rem 0 0;
     }
+
+    .closeMenu {
+        display: none;
+    }
   
     .navbar--links {
         display: flex;
